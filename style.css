@@ -1,0 +1,163 @@
+/*
+ * Waybar Style for a Soothing, Nostalgic Theme
+ * Inspired by the provided wallpaper
+*/
+
+/* Define colors from the wallpaper */
+@define-color background      #2a2d42; /* Dark indigo from sky/shadows */
+@define-color foreground      #e0dcd3; /* Cream from clouds */
+@define-color red             #c96e6e; /* Muted terracotta from bricks */
+@define-color blue            #8aa5c3; /* Muted sky blue from clothes */
+@define-color yellow          #e3b48f; /* Pale yellow from cloud highlights */
+@define-color background-alt  #3d415f; /* Slightly lighter background for modules */
+
+/* --- Global Settings --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: 'JetBrainsMono Nerd Font', 'Symbols Nerd Font';
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @background;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* --- General Module Styling --- */
+#workspaces,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#backlight,
+#thermal,
+#tray,
+#custom-power {
+    background-color: @background-alt;
+    padding: 2px 15px;
+    margin: 4px 0px;
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Workspaces --- */
+#workspaces {
+    background-color: @background;
+    margin-left: 8px;
+}
+
+#workspaces button {
+    padding: 0px 8px;
+    color: @foreground;
+    background-color: @background-alt;
+    margin: 4px 4px;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(.55, 0, .1, 1);
+}
+
+#workspaces button:hover {
+    background-color: @blue;
+    color: @background;
+}
+
+#workspaces button.active {
+    background-color: @blue;
+    color: @background;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+    color: @foreground;
+}
+
+/* --- Center Clock --- */
+#clock {
+    font-weight: bold;
+}
+
+/* --- Right Side Modules --- */
+#tray {
+    background-color: @background;
+}
+
+#network {
+    color: @blue;
+}
+
+#pulseaudio {
+    color: @blue;
+}
+
+#pulseaudio.muted {
+    color: @red;
+}
+
+#backlight {
+    color: @yellow;
+}
+
+#thermal {
+    color: @foreground;
+}
+
+#thermal.critical {
+    background-color: @background-alt;
+    color: @red;
+}
+
+#battery {
+    color: @foreground;
+}
+
+#battery.charging, #battery.plugged {
+    color: @blue;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @background-alt;
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: @red;
+        color: @background;
+    }
+}
+
+#custom-power {
+    color: @red;
+    margin-right: 8px;
+    padding: 2px 13px;
+}
+
+#custom-power:hover {
+    background-color: @red;
+    color: @background;
+}
+
+
+/* --- Tooltips --- */
+tooltip {
+    background-color: @background-alt;
+    border: 1px solid @blue;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @foreground;
+}
